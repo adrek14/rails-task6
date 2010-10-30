@@ -1,0 +1,21 @@
+
+#user_nav{ :style => "float: right;" }  
+  - if user_signed_in?  
+    %p{ :style => "display: inline;" }= "Hello Mr. " + current_user.username.capitalize + " Anderson. Not the One?"  
+    %p{ :style => "display: inline;" }= link_to "Get me out of here!", destroy_user_session_path
+
+%link{"rel" => "stylesheet", "href" => "main.css", "type" => "text/css"}
+- #%body{ :style => "background: #000000; color: #88dd00;"}
+
+%p 
+  Welcome to
+  %b the Matrix!
+
+%p Choose your pill:
+
+%p
+  %b
+    %a.blue{ :href => "secrets" } Blue one
+%p
+  %b
+    %a.red{ :href => "coward" } Red one

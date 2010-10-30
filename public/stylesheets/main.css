@@ -1,0 +1,18 @@
+
+body {
+	color: #88dd00;
+        background: #000000;
+}
+
+a.blue:link { color: #96d8ff; }       /* unvisited link */
+a.blue:visited { color: #96d8ff; }   /* visited links */
+a.blue:active { color: #96d8ff; }     /* active links */
+
+a.red:link { color: #ff3230; }       /* unvisited link */
+a.red:visited { color: #ff3230; }   /* visited links */
+a.red:active { color: #ff3230; }     /* active links */
+
+a:link { color: #88dd00; }       /* unvisited link */
+a:visited { color: #88dd00; }   /* visited links */
+a:active { color: #88dd00; }     /* active links */
+
