@@ -3,7 +3,7 @@ class SecretsController < ApplicationController
   before_filter :authenticate_user!
 
   def index
-    @secrets = Secret.paginate( :per_page => 4, :page => 1 )
+    @secrets = Secret.paginate :per_page => 4, :page => params[:page], :order => 'id ASC' 
   end
 
   def new
@@ -23,6 +23,6 @@ class SecretsController < ApplicationController
 
   def search
     @search = Secret.search( params[:search] )
-    @secrets = @search.all
+    @secrets = @search.all.paginate :per_page => 4, :page => params[:page], :order => "id ASC"
   end
 end
