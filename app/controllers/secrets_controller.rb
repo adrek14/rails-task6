@@ -11,8 +11,12 @@ class SecretsController < ApplicationController
   end
 
   def create
-    secret = Secret.create(params[:secret])
-    redirect_to secrets_path
+    @secret = Secret.create(params[:secret])
+    if @secret.save
+      redirect_to secrets_path
+    else
+      render new_secret_path #:action => "new"
+    end
   end
 
   def destroy
