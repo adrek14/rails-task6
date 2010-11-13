@@ -1,0 +1,7 @@
+%h2 Add a comment to
+%p
+- form_for [:secret, @comment] do |f|
+  = render "shared/error_messages", :target => @comment
+  %p= f.label :content, "Content"
+  %p= f.text_area :content
+  %p= f.submit "Comment"

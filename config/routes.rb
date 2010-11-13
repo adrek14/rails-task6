@@ -5,7 +5,13 @@ RailsTask4::Application.routes.draw do
 
   match "coward", :to => "welcome#coward"
 
+  resources :comments do
+    get "vote_up" => "comments#voteUp" 
+    get "vote_down" => "comments#voteDown" 
+  end
+
   resources :secrets do
+    resources :comments
     collection do
       get :search
     end

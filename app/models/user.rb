@@ -8,4 +8,6 @@ class User < ActiveRecord::Base
   attr_accessible :username, :email, :password, :password_confirmation, :remember_me
   validates_uniqueness_of :username
   validates_presence_of :username
+  has_many :comments
+  has_many :votes
 end
