@@ -14,7 +14,7 @@ describe CommentsController do
 
       it "creates comments" do
         @secret = Factory( :secret )
-        Comment.should_receive(:new).with( {"user_id" => @user, "content" => "dummy", "vote_count" => 0} ).and_return(@comment)
+        Comment.should_receive(:new).with( {"user_id" => @user.id, "content" => "dummy", "vote_count" => 0} ).and_return(@comment)
         post :create, :comment => {:content => "dummy"}, :secret_id => @secret.id 
       end
    

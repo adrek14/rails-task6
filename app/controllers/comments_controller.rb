@@ -11,7 +11,7 @@ class CommentsController < ApplicationController
 
   def create
     @secret = Secret.find( params[:secret_id] )
-    if @secret.new_comment( params[:comment].merge( :user_id => current_user, :vote_count => 0) )
+    if @secret.new_comment( params[:comment].merge( :user_id => current_user.id, :vote_count => 0) )
        redirect_to secrets_path
     else
        render new_comment_path
