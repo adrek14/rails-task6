@@ -17,6 +17,11 @@ group :test, :development do
   gem 'rspec'
 end
 
+group :test do
+  gem 'capybara', '0.4.0'
+  gem 'launchy'
+end
+
 gem 'autotest'
 gem 'factory_girl'
 # Use unicorn as the web server
