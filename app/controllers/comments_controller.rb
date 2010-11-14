@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
 
+  before_filter :authenticate_user!
+
   def new
     @comment = Comment.new
   end
@@ -9,14 +11,13 @@ class CommentsController < ApplicationController
 
   def create
     @secret = Secret.find( params[:secret_id] )
-    @comment = @secret.comments.new( params[:comment].merge( :user_id => current_user, :vote_count => 0 ) )
-    if @comment.save
-      redirect_to secrets_path
+    if @secret.new_comment( params[:comment].merge( :user_id => current_user, :vote_count => 0) )
+       redirect_to secrets_path
     else
-      render new_comment_path #:action => "new"
+       render new_comment_path
     end
   end
-
+    
   def voteUp
     @comment = Comment.find( params[:comment_id] )
     @comment.vote( current_user, up=true )

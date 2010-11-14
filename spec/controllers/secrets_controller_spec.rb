@@ -53,7 +53,7 @@ describe SecretsController do
     
       pending "it should be super-cool" do
       end
-     
+    
   end 
 
 end
