@@ -3,6 +3,6 @@
 - @pending.each do |p|
   %p{ :style => "margin: 0 0 0 15px; display: inline;"}= p.name
   %p{ :style => "display: inline; font-size: 12px;"}= link_to "(accept)", group_accept_path( @user, p )
-  %p{ :style => "display: inline; font-size: 12px;"} (decline)
+  %p{ :style => "display: inline; font-size: 12px;"}= link_to "(decline)", group_decline_path( @user, p )
 %hr
 =link_to "Create a group", new_group_path

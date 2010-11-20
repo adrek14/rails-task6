@@ -14,6 +14,7 @@ RailsTask4::Application.routes.draw do
     resources :groups do
       get "invite" => "groups#invite" 
       get "accept" => "groups#accept" 
+      get "decline" => "groups#decline" 
     end
   end
 

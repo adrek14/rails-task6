@@ -38,7 +38,15 @@ class Group < ActiveRecord::Base
     end
   end
 
-  def decline
+  def decline( user_id )
+    if Invitation.where( :user_id => user_id, :group_id => self.id, :state => 0 ) != []
+        @a = Invitation.where( :user_id => user_id, :group_id => self.id, :state => 0 )[0]
+        @a.state = -1
+        @a.save
+    else
+        false
+    end
+
   end
 
   def members

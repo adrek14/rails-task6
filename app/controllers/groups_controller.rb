@@ -41,4 +41,13 @@ class GroupsController < ApplicationController
     end
     redirect_to user_path( current_user )
   end
+
+  def decline
+    if Group.find( params[:group_id] ).decline( params[:user_id] )
+      flash[:notice] = 'Invitation declined.'
+    else
+      flash[:notice] = 'Declining failed.'
+    end
+    redirect_to user_path( current_user )
+  end
 end
