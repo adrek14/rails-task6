@@ -10,6 +10,15 @@ RailsTask4::Application.routes.draw do
     get "vote_down" => "comments#voteDown" 
   end
 
+  resources :users do
+    resources :groups do
+      get "invite" => "groups#invite" 
+      get "accept" => "groups#accept" 
+    end
+  end
+
+  resources :groups
+
   resources :secrets do
     resources :comments
     collection do

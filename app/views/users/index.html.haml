@@ -1,0 +1,6 @@
+=render "shared/navigation"
+%h2 People inside the Matrix
+%p
+- @users.each do |u|
+  =link_to u.username, user_path( u )
+  %br

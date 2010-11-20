@@ -1,0 +1,18 @@
+=render "shared/navigation"
+%h2= @user.username
+%hr
+- if flash[:notice]
+  #flash{:style => "border: 1px solid;"}
+    %h3= flash[:notice]
+%p
+  %b Leadership:
+- @leaded.each do |l|
+  %p{ :style => "margin: 0 0 0 15px;"}= link_to l.name, group_path( l )
+%p
+  %b Groups:
+- @user.groups.each do |g|
+  %p{:style => "margin: 0 0 0 15px;"}= g.name
+- if @user == current_user
+  = render "logged_account"
+- else
+  = render "foreign_account"

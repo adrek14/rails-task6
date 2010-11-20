@@ -1,0 +1,9 @@
+= render "shared/navigation"
+%h2 Create a group
+%p
+- form_for [@group] do |f|
+  %p= f.label :name, "Name"
+  %p= f.text_field :name
+  %p= f.label :info, "Info"
+  %p= f.text_field :info
+  %p= f.submit "Create"

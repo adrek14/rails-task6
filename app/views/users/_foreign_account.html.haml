@@ -1,0 +1,10 @@
+%p 
+  %b Pending invitations:
+- @pending.each do |p|
+  %p{ :style => "margin: 0 0 0 15px;"}= 'pending invitation: "' + p.name + '"'
+%p
+  %b Invitation possibilities:
+- @invitable.each do |g|
+  = link_to 'Invite to "'+g.name+'"', group_invite_path( @user, g )
+  %br
+

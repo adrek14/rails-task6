@@ -1,0 +1,8 @@
+= render "shared/navigation"
+%h2 Groups fighting for life in the Matrix
+%hr
+%p
+- @groups.each do |g|
+  %p= link_to g.name, group_path( g )
+%hr
+%p= link_to "Create a group", new_group_path

@@ -1,0 +1,12 @@
+=render "shared/navigation"
+%h2= 'Homepage of "' + @group.name + '"'
+%p
+%p= @group.info
+%hr
+%p
+  %b Group leader:
+%p{ :style => "margin: 0 0 0 15px;"}= link_to User.find( @group.admin ).username, user_path( @group.admin )
+%p
+  %b Members:
+- @members.each do |m|
+  %p{ :style => "margin: 0 0 0 15px;"}= link_to m.username, user_path( m )
