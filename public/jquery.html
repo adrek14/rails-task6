@@ -1,0 +1,275 @@
+<head>
+
+<style type="text/css">
+
+/* tipbox */
+
+#myinput
+{  width: 200px;
+}
+
+#tipbox
+{  width: 200px;
+   border: 1px solid;
+   display: none;
+}
+
+#tipbox ul
+{  list-style: none;
+   padding: 0;
+   margin: 0;
+}
+
+#tipbox ul li
+{  padding: 6px 0;
+}
+
+#tipbox li:hover
+{  background-color: #DDDDDD;
+}
+
+.hidden
+{
+   display: none;
+}
+
+.revealed
+{
+   display: block;
+}
+
+/* stars */
+
+.star
+{
+   float: left;
+   width: 32;
+   height: 30;
+   background-image: url('star-g.jpg');
+   background-repeat: none;
+}
+
+/* dropdown menu */
+
+#dropdown ul li ul li
+{
+  border: 1px solid;
+  text-decoration: none;
+}
+
+#dropdown li
+{
+  list-style: none;
+  float: left;
+  width: 200px;
+}
+
+#dropdown ul li ul li
+{
+  float: none;  
+  background-color: none;
+}
+
+#dropdown ul li ul
+{
+  padding: 0;
+  width: 200px;
+  //visibility: hidden;
+  display: none;
+}
+
+#dropdown
+{
+  text-align: center;
+  margin: 0;
+  padding: 0;
+}
+
+#dropdown ul li ul li:hover
+{
+  background-color: #dddddd;
+}
+
+.menu_title
+{
+  background-color: #349856;
+  margin: 0;
+}
+.green
+{
+  background-color: #349856;
+}
+</style>
+<script type="text/javascript" src="jquery.js"></script>
+<script type="text/javascript">
+
+$(document).ready( function() {
+	$('.star').hover( function() {
+		var starid = $(this).attr('id').match(/[0-9]/);
+                for ( i=1; i<= starid ; i++) {
+			$('#star'+i).css('background-image', 'url(\'star-b.jpg\')' );
+		}
+		$(this).css('background-image', 'url(\'star-b.jpg\')' );
+	}, function() {
+		$('.star').each( function() {
+			if ( $(this).attr('set') == 'false' ) {
+				$(this).css('background-image', 'url(\'star-g.jpg\')' );
+			}
+		});
+	});
+	$('.star').click( function() {
+		var starid = $(this).attr('id').match(/[0-9]/);
+                for ( i=1; i<= starid ; i++) {
+			$('#star'+i).css('background-image', 'url(\'star-b.jpg\')' );
+			$('#star'+i).attr('set', 'true' );
+		}
+                for ( i=5; i> starid ; i--) {
+			$('#star'+i).css('background-image', 'url(\'star-g.jpg\')' );
+			$('#star'+i).attr('set', 'false' );
+		}
+	});
+});
+
+
+$(document).ready(function() {
+   $("#dropdown ul").hover(function() {
+     $(this).addClass("green");
+   },function(){
+     $(this).removeClass("green");
+   });
+ });
+
+//jQuery.extend(
+//    jQuery.expr[':'], { 
+//        Contains : "jQuery(li).text().toUpperCase().indexOf(m[3].toUpperCase())>=0"
+//});
+
+var str2="rege"
+
+$(document).ready( function() {
+	$('#myform').submit( function() {
+		$('#myinput').removeAttr('name');
+		$('#myinput').val( $('.revealed').eq(0).text() );
+	});
+	$("input[type='text']").focus( 	function() { 
+		$('#tipbox').slideToggle("fast"); //animate( { height: auto, display: block }, 150 ); });
+		//$(this).removeAttr('name');
+	});
+	$("input[type='text']").blur( function() {  
+		$('#tipbox').slideToggle("fast"); //animate( { height: 0, display: none }, 150 ); });
+		//$(this).attr('name', 'MyInput2');
+	});
+	$('#mysubmit').click( function() {
+		//$('#tipbox').attr('name', 'MyInput2');
+                //alert( $('.revealed:first').text() );
+		$('#myinput').val( $('.revealed').eq(0).text() );
+	});
+});
+
+$(document).ready( function() {
+	$("input[type='text']").keyup( function() { //keydown( 
+	// should be '#myinput', but left that out as an example of selecting all the text fields
+		//alert($(this).val());
+                var input_text = $(this).val()
+                //alert( input_text )
+		$("li").each( function( ) {
+                        //alert( input_text );
+                	if ($(this).text().match( input_text )) {
+                        	$(this).removeClass("hidden"); //css('display', 'block');
+                        	$(this).addClass("revealed"); //css('display', 'block');
+                                //alert( $(this).text().match( input_text ) );
+                        } else {
+                        	$(this).addClass("hidden"); //css('display', 'none');
+                        	$(this).removeClass("revealed"); //css('display', 'block');
+                        }
+                });
+	});
+});
+
+$(document).ready( function() {
+	$('#tipbox li').click( function() {
+		var li_val = $(this).text();
+		$('#myinput').val( li_val ) });
+});
+
+//	$('li:Contains').css( 'visibility', 'hidden' );
+//Contains : "reg.test( jQuery(li).text() )"
+//toUpperCase().indexOf(m[3].toUpperCase())>=0" 
+
+$(document).ready( function() {
+	$('#dropdown li').hover(
+		function() { $('ul', this).css('display', 'block'); },
+		function() { $('ul', this).css('display', 'none'); 
+	}); 
+});
+
+
+</script>
+<body>
+1. Podpowiedzi do text_field'a w stylu jakdojade.pl. Oryginał jest AJAX'owy oparty na gwt,
+ja sie na tym nie znam (jeszcze) wiec zaszylem nazwy ulic w html'u. Kiedy ktos dodaje siec chcialbym,
+zeby wybral sobie ulice z rozwijanej listy, zamiast wpisywania recznego i robienia literowek oraz ulic,
+ktore roznia sie jakimis drobnostkami, np. "Drobnera", "drobnera", " drobnera", etc.
+<ul>
+  <li> problem ktorego jeszcze nie rozwiazalem to firefox'owe spamietywanie danych wprowadzonych wczesniej
+do formularza
+<li> probowalem oszukac przegladarke zmieniajac atrybut 'name' podczas klikania na submit
+<li> dzialalo, ale sypalo sie przy submitowaniu enter'em
+</ul>
+<br>
+<form id="myform" action="#">
+<input id="myinput" title="myInput" type="text" name="MyInput2" value="" /><br />
+<div id="tipbox" >
+  <ul>
+    <li class="revealed">Piotra Skargi
+    <li class="revealed">Traugutta
+    <li class="revealed">Joliot-Curie
+    <li class="revealed">Most Grunwaldzki
+  </ul>
+</div>
+<input type="submit" value="Submit" />
+</form>
+<br>
+2. Gwiazdki do oceny sieci/userow/komentarzy/etc. Jest tego pelno w internecie, ale moje sa home made (bo swieta sa, trzeba robic ozdoby choinkowe:]).
+<ul>
+  <li> zeby zapamietac "klikniecie" zabrudzilem tag div atrybutem 'set="false"'
+</ul>
+<br>
+<div class="star" id="star1" set="false">
+</div>
+<div class="star" id="star2" set="false">
+</div>
+<div class="star" id="star3" set="false">
+</div>
+<div class="star" id="star4" set="false">
+</div>
+<div class="star" id="star5" set="false">
+</div>
+<br>
+<br>
+<br>
+3. Proste menu dropdown, zrobilem jako pierwsze raczej zeby odswiezyc jquery.
+<br>
+<div id="dropdown">
+<ul>
+<li> <p class="menu_title"> Menu 1 </p>
+  <ul>
+    <li> Item 1
+    <li> Item 2
+    <li> Item 3
+    <li> Item 4
+  </ul>
+<li> <p class="menu_title"> Menu 2 </p>
+  <ul>
+    <li> Item 1
+    <li> Item 2
+    <li> Item 3
+  </ul>
+<li> <p class="menu_title"> Menu 3 </p>
+  <ul>
+  </ul>
+</ul>
+</div>
+
+
+</body>
